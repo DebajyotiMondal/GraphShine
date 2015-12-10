@@ -1,0 +1,14 @@
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\MainWindow.baml
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\MainWindow.g.cs
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\App.g.cs
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\GraphShine_MarkupCompile.cache
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\GraphShine.g.resources
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\GraphShine.csproj.GenerateResource.Cache
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\bin\Debug\GraphShine.exe.config
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\bin\Debug\GraphShine.exe
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\bin\Debug\GraphShine.pdb
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\GraphShine.Properties.Resources.resources
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\GraphShine.exe
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\GraphShine.pdb
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\obj\Debug\GraphShine.csprojResolveAssemblyReference.cache
+C:\Users\Djyoti\Dropbox\GraphShine\GraphShine\GraphShine\bin\Debug\GraphShine.XML

@@ -1,0 +1,30 @@
+\BOOKMARK [1][-]{section.1}{Graph Primitives}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Graph}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{Read Graph From File: O\(m+n\)}{subsection.1.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.2}{Insert a Vertex or an Edge: O\(1\)}{subsection.1.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.1.3}{Deletion of a Vertex v: O\(d\(v\)\)}{subsection.1.1}% 5
+\BOOKMARK [3][-]{subsubsection.1.1.4}{Deletion of an Edge: O\(1\)}{subsection.1.1}% 6
+\BOOKMARK [3][-]{subsubsection.1.1.5}{Iterate Over Vertices: O\(n\)}{subsection.1.1}% 7
+\BOOKMARK [3][-]{subsubsection.1.1.6}{Iterate Over the Adjacency List: O\(m+n\)}{subsection.1.1}% 8
+\BOOKMARK [2][-]{subsection.1.2}{Tree}{section.1}% 9
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Insert a Directed Edge: O\(1\)}{subsection.1.2}% 10
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Access Children: O\(1\)}{subsection.1.2}% 11
+\BOOKMARK [3][-]{subsubsection.1.2.3}{Iterate Over the Adjacency List: O\(m+n\)}{subsection.1.2}% 12
+\BOOKMARK [3][-]{subsubsection.1.2.4}{Check whether two Vertices are Neighbors: O\(1\)}{subsection.1.2}% 13
+\BOOKMARK [1][-]{section.2}{Graph Algorithms}{}% 14
+\BOOKMARK [2][-]{subsection.2.1}{BFS Ordering: O\(m+n\)}{section.2}% 15
+\BOOKMARK [2][-]{subsection.2.2}{Connected Components: O\(m+n\)}{section.2}% 16
+\BOOKMARK [2][-]{subsection.2.3}{Minimum Spanning Tree \(MST\): O\(\(m+n\)logm\)}{section.2}% 17
+\BOOKMARK [1][-]{section.3}{Geometric Algorithms}{}% 18
+\BOOKMARK [2][-]{subsection.3.1}{L1 MST of a Point Set: O\(nlogn\)}{section.3}% 19
+\BOOKMARK [1][-]{section.4}{Utilities}{}% 20
+\BOOKMARK [2][-]{subsection.4.1}{Nearest Neighbor}{section.4}% 21
+\BOOKMARK [3][-]{subsubsection.4.1.1}{L1 Nearest Neighbor in a Cone: O\(n logn\)}{subsection.4.1}% 22
+\BOOKMARK [2][-]{subsection.4.2}{Array Search}{section.4}% 23
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Binary Search: O\(logn\)}{subsection.4.2}% 24
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Binary Search Closest Neighbor: O\(logn\)}{subsection.4.2}% 25
+\BOOKMARK [1][-]{section.5}{Data Structures}{}% 26
+\BOOKMARK [2][-]{subsection.5.1}{Segment Tree}{section.5}% 27
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Construction: O\(nlogn\)}{subsection.5.1}% 28
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Get all Intersecting Segments O\(logn\)}{subsection.5.1}% 29
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Get the Segment Immediately Above O\(log2 n\)}{subsection.5.1}% 30

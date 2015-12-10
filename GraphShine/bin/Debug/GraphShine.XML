@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GraphShine</name>
+    </assembly>
+    <members>
+        <member name="T:GraphShine.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:GraphShine.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:GraphShine.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="M:GraphShine.Utilities.ArraySearch.BinarySearch(System.Double,System.Double[],System.Int32@)">
+            <summary>
+            Searches query value inside an array and if found, then the indexFound is 
+            the index in the Array that holds the query value. Returns true if found, false otherwise.
+            </summary>
+            <param name="querypoint"></param>
+            <param name="Array"></param>
+            <param name="indexFound"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GraphShine.Utilities.ArraySearch.BinarySearchClosest(System.Double,System.Double[],System.Int32@,System.Int32@)">
+            <summary>
+            Searches query value inside an array and if found, then the leftIndex and rightIndex both contain 
+            the Array Index that holds the query value. If not found then the leftIndex and rightIndex forms
+            the smallest interval containing the query value. Returns true if found, false otherwise.
+            If the query value is smaller (larger) than all then leftIndex (rightIndex) is -1.
+            </summary>
+            <param name="querypoint"></param>
+            <param name="Array"></param>
+            <param name="leftIndex"></param>
+            <param name="rightIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GraphShine.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:GraphShine.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:GraphShine.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:GraphShine.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:GraphShine.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>
