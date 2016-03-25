@@ -8,6 +8,10 @@ namespace GraphShine.GraphPrimitives
     {
         public int VertexCount;
         public int EdgeCount;
+
+        public static Stack<int> ReusableVertexId;
+        public static Stack<int> ReusableEdgeId;
+
         public Dictionary<int,Vertex> Vertices = new Dictionary<int,Vertex>();
         public Dictionary<int, Edge> Edges = new Dictionary<int, Edge>();
         public Dictionary<int, Dictionary<int, int>> AdjList = new Dictionary<int, Dictionary<int,int>>();
@@ -16,12 +20,27 @@ namespace GraphShine.GraphPrimitives
         {
             VertexCount = 0;
             EdgeCount = 0;
+
+            ReusableVertexId = new Stack<int>();
+            ReusableEdgeId = new Stack<int>();
         }
 
         public Graph(int n, int m)
         {            
             VertexCount = n;
             EdgeCount = m;
+        }
+         
+        public Vertex CreateVertex()
+        {
+
+            var vId = VertexCount + 1;
+            if (ReusableVertexId.Count > 0) vId = ReusableVertexId.Pop();
+            Vertex v = new Vertex(vId);
+
+            InsertVertex(v);
+
+            return v;
         }
 
         public void InsertVertex(Vertex v)
@@ -64,16 +83,16 @@ namespace GraphShine.GraphPrimitives
 
         public void DeleteEdge(Vertex v, Vertex w)
         {
-            Dictionary<int, int> NeighborList = AdjList[v.Id];
-            int edgeId = NeighborList[w.Id];
+            Dictionary<int, int> NeighborToEdgeId = AdjList[v.Id];
+            int edgeId = NeighborToEdgeId[w.Id];
             
             Edges.Remove(edgeId);
             EdgeCount = Edges.Count;
 
-            NeighborList.Remove(w.Id);
+            NeighborToEdgeId.Remove(w.Id);
  
-            NeighborList = AdjList[w.Id];
-            NeighborList.Remove(v.Id);
+            NeighborToEdgeId = AdjList[w.Id];
+            NeighborToEdgeId.Remove(v.Id);
         }
 
         public Dictionary<int,int>.ValueCollection IdsOfIncidentEdges(Vertex v)
@@ -87,7 +106,22 @@ namespace GraphShine.GraphPrimitives
             return AdjList[v.Id].Keys;
         }
 
-        public int InsertEdge(Edge e)
+        public bool InsertEdge(Vertex a, Vertex b)
+        {
+            if (a == null || b == null) return false;
+
+            var eId = EdgeCount + 1;
+            if (ReusableEdgeId.Count > 0) eId = ReusableEdgeId.Pop();
+            var e = new Edge(a.Id, b.Id, eId);
+            if (!InsertEdge(e))
+            {
+                ReusableEdgeId.Push(eId);
+                return false;
+            }
+            return true;
+        }
+
+        public bool InsertEdge(Edge e)
         {
             bool alreadyExists = ContainsEdge(e);
             if (!alreadyExists)
@@ -118,8 +152,9 @@ namespace GraphShine.GraphPrimitives
                 Debug.Assert(!(AdjList.ContainsKey(a) && AdjList[a].ContainsKey(b) ^
                 AdjList.ContainsKey(b) && AdjList[b].ContainsKey(a)));
                  */
+                return true;
             }
-            return EdgeCount;
+            return false;
         }
 
         

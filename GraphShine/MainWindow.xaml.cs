@@ -28,6 +28,7 @@ namespace GraphShine
         }
         public MainWindow()
         {
+            Console.WriteLine("Welcome to GraphShine!");
             InitializeComponent();
             runTests();
             //this.Hide();

@@ -18,27 +18,27 @@ namespace GraphShine.GraphAlgorithms
             
             Graph G = new Graph();
 
-            G.InsertVertex(new Vertex(0));
-            G.InsertVertex(new Vertex(1));
-            G.InsertVertex(new Vertex(2));
-            G.InsertVertex(new Vertex(3));
-            G.InsertVertex(new Vertex(4));
-            G.InsertVertex(new Vertex(5));
-            G.InsertVertex(new Vertex(6));
-            G.InsertVertex(new Vertex(7));
-            G.InsertVertex(new Vertex(8));
-            G.InsertVertex(new Vertex(9));
+            Vertex v0 = G.CreateVertex();
+            Vertex v1 = G.CreateVertex();
+            Vertex v2 = G.CreateVertex();
+            Vertex v3 = G.CreateVertex();
+            Vertex v4 = G.CreateVertex();
+            Vertex v5 = G.CreateVertex();
+            Vertex v6 = G.CreateVertex();
+            Vertex v7 = G.CreateVertex();
+            Vertex v8 = G.CreateVertex();
+            Vertex v9 = G.CreateVertex();
 
 
 
-            G.InsertEdge(new Edge(0, 1, 0));
-            G.InsertEdge(new Edge(0, 3, 2));
-            G.InsertEdge(new Edge(3, 4, 3));
-            G.InsertEdge(new Edge(1, 2, 4));
-            G.InsertEdge(new Edge(1, 3, 5));
-            G.InsertEdge(new Edge(2, 3, 1));
-            G.InsertEdge(new Edge(7, 8, 6));
-            G.InsertEdge(new Edge(8, 9, 7));
+            G.InsertEdge(v0, v1);
+            G.InsertEdge(v0, v3);
+            G.InsertEdge(v3, v4);
+            G.InsertEdge(v1, v2);
+            G.InsertEdge(v1, v3);
+            G.InsertEdge(v2, v3);
+            G.InsertEdge(v7, v8);
+            G.InsertEdge(v8, v9);
 
             List<Graph> components = ConnectedComponents.getAllComponents(G);
 

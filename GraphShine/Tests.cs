@@ -30,6 +30,7 @@ namespace GraphShine
         public void MinimumCostNetworkFlowTest() { }
 
         //Data Structures Test
+
         public void PlanarityTest() { }
 
         public void PQRTreeTest() { }
@@ -44,7 +45,9 @@ namespace GraphShine
             //SegmentTreeTest.SegmentTreeDataStructureTest();
             //ArraySearchTest.BinarySearchTest();
             //VertrexOrderingTest.BfsTest();
-            ConnectedComponentsTest.getAllComponentsTest();
+            //ConnectedComponentsTest.getAllComponentsTest();
+            BSTTest.BinarySearchTreeTest();
+            
         }
     }
 }

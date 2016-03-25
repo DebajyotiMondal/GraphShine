@@ -22,7 +22,7 @@ namespace GraphShine.DataStructures
         public static Tree tree;
         public static void Build(HInterval[] horizontalHIntervals)
         {
-            tree = new Tree(0, 0);
+            tree = new Tree();
             //collect all the endpoints
             int index = 0;
             double [] endpoints = new double[2*horizontalHIntervals.Length];
@@ -127,16 +127,15 @@ namespace GraphShine.DataStructures
             //add nodes
             for (int i = 0; i < NodeUpperBound; i++) tree.InsertNode(new SegmentNode(i, new HInterval()));
             tree.RootNode = tree.Nodes[0];
-            //add edges
-            int eId = 0;
+            //add edges            
             for (int i = 0; i < NodeUpperBound; i++)
             {
                 int kid1Id = -1 + 2*(i + 1);
                 int kid2Id = -1 + 2*(i + 1) + 1;
                 if (kid1Id < NodeUpperBound)
-                    tree.InsertDirectedEdge(new Edge(i, kid1Id, eId++), i, kid1Id, 0);
+                    tree.InsertDirectedEdge(tree.Nodes[i], tree.Nodes[kid1Id], 0);
                 if (kid2Id < NodeUpperBound)
-                    tree.InsertDirectedEdge(new Edge(i, kid2Id, eId++), i, kid2Id, 1);
+                    tree.InsertDirectedEdge(tree.Nodes[i], tree.Nodes[kid2Id], 1);
             }
             //assignment of leaves to elementary horizontalHIntervals
             int k = 0;

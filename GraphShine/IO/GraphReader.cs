@@ -47,9 +47,12 @@ namespace GraphShine.IO
                     }
 
                     Edge edge = new Edge(a, b, edgeIndex);
-                    if (!graph.ContainsEdge(edge))                    
-                        edgeIndex = graph.InsertEdge(edge);
-                    
+                    if (!graph.ContainsEdge(edge))
+                    {
+                        graph.InsertEdge(edge);
+                        edgeIndex++;
+                    }
+
                 }
                 return graph;
             }

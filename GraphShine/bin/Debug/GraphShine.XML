@@ -4,6 +4,61 @@
         <name>GraphShine</name>
     </assembly>
     <members>
+        <member name="T:GraphShine.DataStructures.BST`1">
+            <summary>
+            Maintains a set of unique values
+            </summary>
+        </member>
+        <member name="M:GraphShine.GraphPrimitives.Tree.CreateNode">
+            <summary>
+            Create a node and assign a unique id for the node; returns the node.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphShine.GraphPrimitives.Tree.DeleteNode(GraphShine.GraphPrimitives.Node)">
+            <summary>
+            Delete the given node.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:GraphShine.GraphPrimitives.Tree.DeleteNode(System.Int32)">
+            <summary>
+            Delete the node of given node Id.
+            </summary>
+            <param name="vId"></param>
+        </member>
+        <member name="M:GraphShine.GraphPrimitives.Tree.DeleteDirectedEdge(GraphShine.GraphPrimitives.Node,GraphShine.GraphPrimitives.Node)">
+            <summary>
+            Delete the given edge.
+            </summary>
+            <param name="parent"></param>
+            <param name="kid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GraphShine.GraphPrimitives.Tree.InsertDirectedEdge(GraphShine.GraphPrimitives.Node,GraphShine.GraphPrimitives.Node,System.Int32)">
+            <summary>
+            Create a new edge.
+            </summary>
+            <param name="parent"></param>
+            <param name="Kid"></param>
+            <param name="kidPosition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GraphShine.GraphPrimitives.Tree.InsertDirectedEdge(GraphShine.GraphPrimitives.Edge,System.Int32)">
+            <summary>
+            Insert the given edge.
+            </summary>
+            <param name="e"></param>
+            <param name="kidPosition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GraphShine.GraphPrimitives.Node.getKid(System.Int32)">
+            <summary>
+            return the kid in the k-th position
+            </summary>
+            <param name="k"></param>
+            <returns></returns>
+        </member>
         <member name="T:GraphShine.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
