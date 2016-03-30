@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -27,6 +28,9 @@ namespace GraphShine.DataStructures
             Nodes.Add(v.Id, v);
             NodeCount = Nodes.Count;
 
+            Dictionary<int, int> neighborsList = new Dictionary<int, int>();
+            AdjList.Add(v.Id, neighborsList);
+
             return v;
         }
 
@@ -42,7 +46,7 @@ namespace GraphShine.DataStructures
 
             //search for the current key
             BSTnode<DJ> currentNode = (BSTnode<DJ>) RootNode;
-            BSTnode<DJ> ParentOfurrentNode = null;
+
 
 
             while (currentNode != null)
@@ -52,7 +56,6 @@ namespace GraphShine.DataStructures
                     break;
                 }
 
-                ParentOfurrentNode = currentNode;
 
                 //if key is greater than currenNode.value then go to the left
                 if (key.CompareTo(currentNode.value) > 0)
@@ -63,30 +66,86 @@ namespace GraphShine.DataStructures
                 {
                     currentNode = (BSTnode<DJ>) currentNode.leftKid();
                 }
-
             }
             if (currentNode == null) return false;
-            else {
-                //if the currentnode has at most one kid, then assign currentnode to its kid
-                if (currentNode.totalKids() < 2)
+
+            //if the currentnode has at most one kid, then assign currentnode to its kid
+            if (currentNode.totalKids() < 2)
+            {
+                var mykid = currentNode.leftKid();
+                if (mykid == null) mykid = currentNode.rightKid();
+                var myParent = currentNode.Parent;
+                if (myParent == null) //change the rootnode                   
+                    RootNode = mykid;
+
+                //current node is a leaf
+                if (mykid == null)
                 {
-                    var mykid = currentNode.leftKid();
-                    if(mykid == null) mykid = currentNode.rightKid();
-                    var myParent = currentNode.Parent;
-                    if (myParent == null)//change the rootnode                   
-                        RootNode = mykid;
-
-                    int kidNo = currentNode.PosAsKid;
                     DeleteDirectedEdge(myParent, currentNode);
-                    DeleteDirectedEdge(currentNode, mykid);
-                    if(kidNo > 0)
-                        InsertDirectedEdge(myParent, mykid, kidNo);
-
                     DeleteNode(currentNode);
+                    if (myParent != null)
+                        adjustTree((BSTnode<DJ>)myParent);
+                    return true;
                 }
 
+                int kidNo = currentNode.PosAsKid;
+                DeleteDirectedEdge(myParent, currentNode);
+                DeleteDirectedEdge(currentNode, mykid);
+                if (kidNo > 0)
+                    InsertDirectedEdge(myParent, mykid, kidNo);
+
+                DeleteNode(currentNode);
+                if (myParent != null)
+                    adjustTree((BSTnode<DJ>)myParent);
+                
             }
+            else
+            {
+                //find the in-order predecessor of current node
+                BSTnode<DJ> Y = (BSTnode<DJ>) inorderPredecessor(currentNode);
+                //update the value
+                currentNode.value = Y.value;
+                //delete Y, Y does not have any right kid.
+                var mykid = Y.leftKid();
+                var myParent = Y.Parent;
+                int kidNo = Y.PosAsKid;
+                if (mykid == null)
+                {
+                    DeleteDirectedEdge(myParent, Y);
+                    DeleteNode(Y);
+                    if (myParent != null)
+                        adjustTree((BSTnode<DJ>)myParent);
+                    return true;
+                }
+                                
+                DeleteDirectedEdge(myParent,Y);
+                DeleteDirectedEdge(Y, mykid);
+                if (kidNo > 0)
+                    InsertDirectedEdge(myParent, mykid, kidNo);
+
+                DeleteNode(Y);
+                //adjust from Y to the parent
+                if (myParent!= null)
+                    adjustTree((BSTnode<DJ>)myParent);
+            }
+
+            
             return true;
+        }
+
+        public static Node  inorderPredecessor(BSTnode<DJ> currentNode)
+        {
+            Node x = currentNode.leftKid();
+
+            if (x == null)
+            {
+                Console.WriteLine("BST ERROR");
+                return x;
+            }
+            while (x.rightKid() != null)            
+                x = x.rightKid();
+            
+            return x;
         }
 
         public void Insert(DJ key)
@@ -139,16 +198,21 @@ namespace GraphShine.DataStructures
 
 
             currentNode = leaf;
+            adjustTree(currentNode);
+        }
 
+        public void adjustTree(BSTnode<DJ> currentNode)
+        {
+            
             
             //travel upwards and find the first unbalanced node
             BSTnode<DJ> UnbalancedNode = null;
-            Queue<Node> q = new Queue<Node>();
+            //Queue<Node> q = new Queue<Node>();
             while (currentNode!=null)
             {
 
-                if (q.Count == 3) q.Dequeue();
-                q.Enqueue(currentNode);
+                //if (q.Count == 3) q.Dequeue();
+                //q.Enqueue(currentNode);
 
                 //check whether this is an unbalanced node
                 int leftHeight = 0, rightHeight = 0;
@@ -164,11 +228,42 @@ namespace GraphShine.DataStructures
                 
                 if (Math.Abs(leftHeight - rightHeight) >= 2)
                 {
+                    Node X, Y, Z = null;
                     //X = current, Y = child, Z = grand child
+                    if (leftHeight > rightHeight)
+                    {
+                        X = currentNode;
+                        Y = X.leftKid();
+                        var k1 = (BSTnode<DJ>)Y.leftKid();
+                        var k2 = (BSTnode<DJ>)Y.rightKid();
+                        if (k1 == null) Z = k2;
+                        if (k2 == null) Z = k1;
+                        if (Z == null)
+                        {
+                            if (k1.height > k2.height) Z = k1;
+                            else Z = k2;
 
-                    var Z = q.Dequeue();
-                    var Y = q.Dequeue();
-                    var X = q.Dequeue();
+                        }
+                    }
+                    else
+                    {
+                        X = currentNode;
+                        Y = X.rightKid();
+                        var k1 = (BSTnode<DJ>)Y.leftKid();
+                        var k2 = (BSTnode<DJ>)Y.rightKid();
+          
+                        if (k1 == null) Z = k2;
+                        if (k2 == null) Z = k1;
+                        if (Z == null)
+                        {
+                            if (k1.height > k2.height) Z = k1;
+                            else Z = k2;
+
+                        }
+                    }
+                    //var Z = q.Dequeue();
+                    //var Y = q.Dequeue();
+                    //var X = q.Dequeue();
                     //update height and perform balanding operation
                     var Xleft = X.leftKid();
                     var Xright = X.rightKid();
@@ -181,35 +276,35 @@ namespace GraphShine.DataStructures
                         //left right  case
                         Console.WriteLine("Left Right Adjustment");
                         currentNode = MakeAdjustment(Z, Y, X, Yleft, Zleft, Zright, Xright, currentNode);
-                        q.Enqueue(Y); q.Enqueue(Z); 
+                        //q.Enqueue(Y); q.Enqueue(Z); 
                     }
                     else if (Xright != null && Yleft != null && Xright.Id == Y.Id && Yleft.Id == Z.Id)
                     {
                         //right left  case
                         Console.WriteLine("Right Left Adjustment");
                         currentNode = MakeAdjustment(Z, X, Y, Xleft, Zleft, Zright, Yright, currentNode);
-                        q.Enqueue(X); q.Enqueue(Z);
+                        //q.Enqueue(X); q.Enqueue(Z);
                     }
                     else if (Xleft != null && Yleft != null && Xleft.Id == Y.Id && Yleft.Id == Z.Id)
                     {
                         //left left  case
                         Console.WriteLine("Left Left Adjustment");
                         currentNode = MakeAdjustment(Y, Z, X, Zleft, Zright, Yright, Xright, currentNode);
-                        q.Enqueue(Z); q.Enqueue(Y);
+                        //q.Enqueue(Z); q.Enqueue(Y);
                     }
                     else if (Xright != null && Yright != null && Xright.Id == Y.Id && Yright.Id == Z.Id)
                     {
                         //right right  case
                         Console.WriteLine("Right Right Adjustment");
                         currentNode = MakeAdjustment(Y, X, Z, Xleft, Yleft, Zleft, Zright, currentNode);
-                        q.Enqueue(X); q.Enqueue(Y);
+                        //q.Enqueue(X); q.Enqueue(Y);
                     }
                 }
                 
                 currentNode = (BSTnode<DJ>) currentNode.Parent;
             }
-        }
 
+        }
         BSTnode<DJ> MakeAdjustment(Node M, Node L, Node R, Node A, Node B, Node C, Node D, BSTnode<DJ> currentNode)
         {
             Node root = currentNode.Parent; 
@@ -283,6 +378,7 @@ namespace GraphShine.DataStructures
 
         public  void printTree()
         {
+            if (RootNode == null) return;
             Queue<BSTnode<DJ>> q = new Queue<BSTnode<DJ>>();
             q.Enqueue((BSTnode<DJ>)RootNode);
             while (q.Count > 0)

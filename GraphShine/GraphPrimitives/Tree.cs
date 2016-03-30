@@ -42,7 +42,7 @@ namespace GraphShine.GraphPrimitives
         /// Create a node and assign a unique id for the node; returns the node.
         /// </summary>
         /// <returns></returns>
-        public Node CreateNode()
+        private Node CreateNode()
         {            
 
             var vId = NodeCount + 1;
@@ -51,6 +51,9 @@ namespace GraphShine.GraphPrimitives
 
             Nodes.Add(v.Id, v);
             NodeCount = Nodes.Count;
+
+            Dictionary<int, int> neighborsList = new Dictionary<int, int>();             
+            AdjList.Add(v.Id, neighborsList);
 
             return v;
         }
@@ -63,6 +66,7 @@ namespace GraphShine.GraphPrimitives
         {
             //delete associated edges
             Dictionary<int, int> NeighborList = AdjList[v.Id];
+
             foreach (var neighborId in NeighborList.Keys)
             {
                 int edgeId = NeighborList[neighborId];
@@ -260,5 +264,6 @@ namespace GraphShine.GraphPrimitives
         {
             return Kids.Count == 0;
         }
+        
     }   
 }

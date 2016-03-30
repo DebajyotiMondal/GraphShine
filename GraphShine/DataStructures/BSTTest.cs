@@ -45,6 +45,36 @@ namespace GraphShine.DataStructures
             //Right Right Adjustment
             tree.Insert(12);
             tree.printTree();
+
+            tree.Delete(2);
+            tree.printTree();
+            tree.Delete(2);
+            tree.printTree();
+            tree.Delete(7);
+            tree.printTree();
+            tree.Delete(6);
+            tree.printTree();
+            tree.Delete(1.5f);
+            tree.printTree();
+            tree.Delete(11);
+            tree.printTree();
+            tree.Delete(8);
+            tree.printTree();
+
+            tree.Delete(5);
+            tree.printTree();
+            tree.Delete(-1);
+            tree.printTree();
+            tree.Delete(9);
+            tree.printTree();
+            tree.Delete(10);
+            tree.printTree();
+            tree.Delete(12);
+            tree.printTree();
+            tree.Delete(1);
+            tree.printTree();
+            tree.Delete(12);
+            tree.printTree();
         }
     }
 }
