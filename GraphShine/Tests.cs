@@ -46,7 +46,8 @@ namespace GraphShine
             //ArraySearchTest.BinarySearchTest();
             //VertrexOrderingTest.BfsTest();
             //ConnectedComponentsTest.getAllComponentsTest();
-            BSTTest.BinarySearchTreeTest();
+            //BSTTest.BinarySearchTreeTest();
+            MinimumSpanningTreeTest.MSTtest();
             
         }
     }

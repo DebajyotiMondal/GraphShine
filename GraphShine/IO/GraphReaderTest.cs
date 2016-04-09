@@ -20,21 +20,21 @@ namespace GraphShine.IO
             Graph graph = GraphReader.Read(filename);
 
             Console.WriteLine("Number Of Vertices = " + graph.VertexCount);
-            foreach (Vertex vertex in graph.Vertices.Values)
+            foreach (Vertex vertex in graph.VertexList())
                 Console.Write(vertex.Id + " ");
             Console.WriteLine("");
             Console.WriteLine("Number Of Edges = " + graph.EdgeCount);
-            foreach (Edge edge in graph.Edges.Values)
+            foreach (Edge edge in graph.EdgeList())
                 Console.Write("(" + edge.StartNodeId + "," + edge.EndNodeId + ")");
             Console.WriteLine("");
             Console.WriteLine("Traverse Adjacency List");
 
-            foreach (var VertexId in graph.AdjList.Keys)
+            foreach (var v in graph.VertexList())
             {
-                Console.Write(VertexId + "-> ");
-                foreach (var neighborId in graph.AdjList[VertexId])
+                Console.Write(v.Id + "-> ");
+                foreach (var neighbor in graph.NeighborList(v)) 
                 {
-                    Console.Write(neighborId + " ");
+                    Console.Write(neighbor.Id + " ");
                 }
                 Console.WriteLine();
             }

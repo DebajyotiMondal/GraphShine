@@ -65,6 +65,7 @@
     <Compile Include="GeometricPrimitives\Rectangle.cs" />
     <Compile Include="GraphAlgorithms\ConnectedComponents.cs" />
     <Compile Include="GraphAlgorithms\ConnectedComponentsTest.cs" />
+    <Compile Include="GraphAlgorithms\MinimumSpanningTreeTest.cs" />
     <Compile Include="GraphAlgorithms\VertrexOrdering.cs" />
     <Compile Include="GraphAlgorithms\MinimumSpanningTree.cs" />
     <Compile Include="GraphAlgorithms\VertrexOrderingTest.cs" />

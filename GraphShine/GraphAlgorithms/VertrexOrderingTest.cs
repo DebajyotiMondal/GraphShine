@@ -29,7 +29,7 @@ namespace GraphShine.GraphAlgorithms
             G.InsertEdge(v1, v3);
             G.InsertEdge(v2, v3);
 
-            int [] bfsOrder = VertrexOrdering.BfsOrdering(G, G.Vertices[0]);
+            int [] bfsOrder = VertrexOrdering.BfsOrdering(G, G.GetVertex(0));
             for (int i = 0; i < bfsOrder.Length; i++) 
                 Console.WriteLine(bfsOrder[i]+" ");
 
@@ -41,13 +41,13 @@ namespace GraphShine.GraphAlgorithms
             G.InsertEdge(v4, v5);
             G.InsertEdge(v5, v6);
             G.InsertEdge(v6, v7);
-            bfsOrder = VertrexOrdering.BfsOrdering(G, G.Vertices[4]);
+            bfsOrder = VertrexOrdering.BfsOrdering(G, G.GetVertex(4));
             for (int i = 0; i < bfsOrder.Length; i++)
                 Console.WriteLine(bfsOrder[i] + " ");
 
             Console.WriteLine("-------");
             G.DeleteEdge(5,6);
-            bfsOrder = VertrexOrdering.BfsOrdering(G, G.Vertices[4]);
+            bfsOrder = VertrexOrdering.BfsOrdering(G, G.GetVertex(4));
             for (int i = 0; i < bfsOrder.Length; i++)
                 Console.WriteLine(bfsOrder[i] + " ");
 

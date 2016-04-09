@@ -21,7 +21,8 @@ namespace GraphShine.DataStructures
         public BSTnode<DJ> CreateBSTNode()
         {
 
-            var vId = NodeCount + 1;
+            
+            var vId = NodeCount;
             if (ReusableNodeId.Count > 0) vId = ReusableNodeId.Pop();
             BSTnode<DJ> v = new BSTnode<DJ>(vId);
 
@@ -401,8 +402,39 @@ namespace GraphShine.DataStructures
             }
             Console.WriteLine("");
         }
+
+
+        public void UpdateNode(DJ w, DJ weight )
+        {
+            
+        }
+        public DJ  ExtractMin()
+        {
+            if (RootNode == null) 
+                Console.Write("Error: BST is Empty");
+            Node w =  RootNode;
+            var currentNode = w;
+            while (currentNode != null)
+            {
+                w = currentNode;
+                currentNode = currentNode.leftKid();
+            }
+
+            var result = ((BSTnode<DJ>) w).value;
+
+            if (RootNode != null) 
+                Delete(result);
+            
+            return result;
+        }
+        public bool IsEmpty()
+        {
+            if (RootNode == null) return true;
+            return false;
+        }
     }
 
+ 
     public class BSTnode<DJ>: Node
     {
         public DJ value;

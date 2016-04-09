@@ -53,7 +53,7 @@ namespace GraphShine.DataStructures
             foreach (var nodeId in IdToIntervals.Keys)
             {
                 int totalSemgnets = IdToIntervals[nodeId].Count;
-                SegmentNode w = (SegmentNode) tree.Nodes[nodeId];
+                SegmentNode w = (SegmentNode) tree.GetNode(nodeId);
                 //double[] Y = new double[totalSemgnets];
                 w.ListOfHIntervals = new HInterval[totalSemgnets];
                 index = 0;
@@ -126,24 +126,24 @@ namespace GraphShine.DataStructures
             int NodeUpperBound = (int) Math.Pow(2, level + 1) - 1;
             //add nodes
             for (int i = 0; i < NodeUpperBound; i++) tree.InsertNode(new SegmentNode(i, new HInterval()));
-            tree.RootNode = tree.Nodes[0];
+            tree.RootNode = tree.GetNode(0);
             //add edges            
             for (int i = 0; i < NodeUpperBound; i++)
             {
                 int kid1Id = -1 + 2*(i + 1);
                 int kid2Id = -1 + 2*(i + 1) + 1;
                 if (kid1Id < NodeUpperBound)
-                    tree.InsertDirectedEdge(tree.Nodes[i], tree.Nodes[kid1Id], 0);
+                    tree.InsertDirectedEdge(tree.GetNode(i), tree.GetNode(kid1Id), 0);
                 if (kid2Id < NodeUpperBound)
-                    tree.InsertDirectedEdge(tree.Nodes[i], tree.Nodes[kid2Id], 1);
+                    tree.InsertDirectedEdge(tree.GetNode(i), tree.GetNode(kid2Id), 1);
             }
             //assignment of leaves to elementary horizontalHIntervals
             int k = 0;
             for (int i = 0; i < NodeUpperBound; i++)
             {
-                if (tree.Nodes[i].Kids.Count == 0)
+                if (tree.GetNode(i).Kids.Count == 0)
                 {
-                    SegmentNode w = (SegmentNode) tree.Nodes[i];
+                    SegmentNode w = (SegmentNode) tree.GetNode(i); 
                     if (k < numberOfElementaryIntervals)
                         w.BaseHInterval = elementaryHIntervals[k++];
                     else

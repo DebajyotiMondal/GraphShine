@@ -44,9 +44,9 @@ namespace GraphShine.GraphAlgorithms
 
             foreach (var comp in components)
             {
-                foreach (var vertexId in comp.Vertices.Keys)
+                foreach (var v in comp.VertexList())
                 {
-                    Console.Write(vertexId + " ");
+                    Console.Write(v.Id + " ");
                 }
                 Console.WriteLine("");
             }

@@ -17,12 +17,12 @@ namespace GraphShine.GraphPrimitives
         public int NodeCount;
         public int EdgeCount;
 
-        public static Stack<int> ReusableNodeId;
-        public static Stack<int> ReusableEdgeId;
+        internal static Stack<int> ReusableNodeId;
+        internal static Stack<int> ReusableEdgeId;
 
-        public Dictionary<int, Node> Nodes = new Dictionary<int, Node>();
-        public Dictionary<int, Edge> Edges = new Dictionary<int, Edge>();
-        public Dictionary<int, Dictionary<int, int>> AdjList = new Dictionary<int, Dictionary<int, int>>();
+        internal Dictionary<int, Node> Nodes = new Dictionary<int, Node>();
+        internal Dictionary<int, Edge> Edges = new Dictionary<int, Edge>();
+        internal Dictionary<int, Dictionary<int, int>> AdjList = new Dictionary<int, Dictionary<int, int>>();
 
         public Tree() 
         {
@@ -38,14 +38,24 @@ namespace GraphShine.GraphPrimitives
             Nodes.Add(v.Id, v);
             NodeCount = Nodes.Count;
         }
+
+        public Node GetNode(int id)
+        {
+            if (!Nodes.ContainsKey(id))
+            {
+                return null;
+            }
+            return Nodes[id];
+        }
+
         /// <summary>
         /// Create a node and assign a unique id for the node; returns the node.
         /// </summary>
         /// <returns></returns>
-        private Node CreateNode()
+        public Node CreateNode()
         {            
 
-            var vId = NodeCount + 1;
+            var vId = NodeCount ;
             if (ReusableNodeId.Count > 0) vId = ReusableNodeId.Pop();
             Node v = new Node(vId);
 
@@ -57,12 +67,12 @@ namespace GraphShine.GraphPrimitives
 
             return v;
         }
-        
+         
         /// <summary>
         /// Delete the given node.
         /// </summary>
         /// <param name="v"></param>
-        public void DeleteNode(Node v)
+        internal void DeleteNode(Node v)
         {
             //delete associated edges
             Dictionary<int, int> NeighborList = AdjList[v.Id];
@@ -87,6 +97,7 @@ namespace GraphShine.GraphPrimitives
             Nodes.Remove(v.Id);
             NodeCount = Nodes.Count;
 
+            if (NodeCount == 0) RootNode = null;
         }
         /// <summary>
         /// Delete the node of given node Id.
@@ -156,6 +167,22 @@ namespace GraphShine.GraphPrimitives
             }
             return true;
         }
+
+        public bool InsertDirectedEdge(int parentId, int kidId)
+        {
+            if (!Nodes.ContainsKey(parentId) || !Nodes.ContainsKey(kidId))
+            {
+                Console.WriteLine("Warning: Edge insertion - Couldn't find nodes.");
+                return false;
+            }
+
+            var parent = Nodes[parentId];
+            var kid = Nodes[kidId];
+            var numOfKids = parent.totalKids();
+            return  InsertDirectedEdge(parent, kid, numOfKids);
+             
+        }
+
         /// <summary>
         /// Insert the given edge.
         /// </summary>
@@ -217,7 +244,32 @@ namespace GraphShine.GraphPrimitives
             Debug.Assert(NodeCount == Nodes.Count);
             Debug.Assert(EdgeCount == Edges.Count);
         }
- 
+
+        public void printTree()
+        {
+            if (RootNode == null) return;
+            Queue<Node> q = new Queue<Node>();
+            q.Enqueue(RootNode);
+            while (q.Count > 0)
+            {
+                var currentNode = q.Dequeue();
+                var left = currentNode.leftKid();
+                var right = currentNode.rightKid();
+
+                Console.Write("(");
+                Console.Write(currentNode.Id + ",");
+                if (left != null) Console.Write(left.Id + ",");
+                else Console.Write("-,");
+                if (right != null) Console.Write(right.Id + ",");
+                else Console.Write("-,");
+                Console.Write(")");
+                foreach (var kid in currentNode.Kids.Values)
+                {
+                    q.Enqueue(kid);
+                }
+            }
+            Console.WriteLine("");
+        }
     }
 
     public class Node: Vertex
@@ -230,7 +282,7 @@ namespace GraphShine.GraphPrimitives
         public Node(int a) : base(a) {  
             Parent = null;
             Kids = new Dictionary<int, Node>();
-            PosAsKid = -1;
+            PosAsKid = -1;            
         }
 
         /// <summary>
@@ -264,6 +316,8 @@ namespace GraphShine.GraphPrimitives
         {
             return Kids.Count == 0;
         }
-        
+
+
+
     }   
 }

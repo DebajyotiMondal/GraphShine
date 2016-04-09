@@ -15,7 +15,7 @@ namespace GraphShine.GraphAlgorithms
             int index = 0;
 
             //initially everybody is black
-            foreach (Vertex vertex in connectedGraph.Vertices.Values)
+            foreach (Vertex vertex in connectedGraph.VertexList())
                 vertex.Color = 0;
             
             //insert startVertex into Queue
@@ -30,12 +30,12 @@ namespace GraphShine.GraphAlgorithms
                 BfsOrder[index++] = currentVertex.Id;
 
                 //find the unvisited neighbors and insert them into Q
-                foreach (int neighborId in connectedGraph.AdjList[currentVertex.Id].Keys)
-                    if (connectedGraph.Vertices[neighborId].Color == 0)
+                foreach (var neighbor in connectedGraph.NeighborList(currentVertex))
+                    if (neighbor.Color == 0)
                     {
                         //assign an intermediate color so that to avoid multiple enqueue 
-                        connectedGraph.Vertices[neighborId].Color = 2; 
-                        Q.Enqueue(connectedGraph.Vertices[neighborId]);
+                        neighbor.Color = 2; 
+                        Q.Enqueue(neighbor);
                     }
 
             }

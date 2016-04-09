@@ -22,9 +22,9 @@ namespace GraphShine.IO
                 line = file.ReadLine();
                 string[] words = line.Split(delimiterChars);
                 if (words.Length != 2) throw new Exception();
-                a = int.Parse(words[0]);
-                b = int.Parse(words[1]);
-                Graph graph = new Graph(a, b);
+                a = int.Parse(words[0]); //n
+                b = int.Parse(words[1]); //m
+                Graph graph = new Graph();
 
                 int edgeIndex = 0;
                 while ((line = file.ReadLine()) != null)
@@ -35,12 +35,12 @@ namespace GraphShine.IO
                     a = int.Parse(words[0]);
                     b = int.Parse(words[1]);
                     //update vertexlist
-                    if (!graph.Vertices.ContainsKey(a))
+                    if (graph.GetVertex(a) == null)
                     {
                         Vertex vertex = new Vertex(a);
                         graph.InsertVertex(vertex);
                     }
-                    if (!graph.Vertices.ContainsKey(b))
+                    if (graph.GetVertex(b) == null)
                     {
                         Vertex vertex = new Vertex(b);
                         graph.InsertVertex(vertex);
