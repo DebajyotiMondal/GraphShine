@@ -25,3 +25,4 @@ C:\Users\Djyoti\Documents\GitHub\GraphShine\GraphShine\obj\Debug\GraphShine_Mark
 C:\Users\Djyoti\Documents\GitHub\GraphShine\GraphShine\obj\Debug\GraphShine.g.resources
 C:\Users\Djyoti\Documents\GitHub\GraphShine\GraphShine\obj\Debug\GraphShine.Properties.Resources.resources
 C:\Users\Djyoti\Documents\GitHub\GraphShine\GraphShine\obj\Debug\GraphShine.csproj.GenerateResource.Cache
+C:\Users\Djyoti\Documents\GitHub\GraphShine\GraphShine\obj\Debug\GraphShine.csprojResolveAssemblyReference.cache

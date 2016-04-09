@@ -92,7 +92,7 @@ namespace GraphShine.DataStructures
                 int kidNo = currentNode.PosAsKid;
                 DeleteDirectedEdge(myParent, currentNode);
                 DeleteDirectedEdge(currentNode, mykid);
-                if (kidNo > 0)
+                if (kidNo >= 0)
                     InsertDirectedEdge(myParent, mykid, kidNo);
 
                 DeleteNode(currentNode);
@@ -121,7 +121,7 @@ namespace GraphShine.DataStructures
                                 
                 DeleteDirectedEdge(myParent,Y);
                 DeleteDirectedEdge(Y, mykid);
-                if (kidNo > 0)
+                if (kidNo >= 0)
                     InsertDirectedEdge(myParent, mykid, kidNo);
 
                 DeleteNode(Y);
@@ -275,28 +275,28 @@ namespace GraphShine.DataStructures
                     if (Xleft != null && Yright != null && Xleft.Id == Y.Id && Yright.Id == Z.Id)
                     {
                         //left right  case
-                        Console.WriteLine("Left Right Adjustment");
+                        //Console.WriteLine("Left Right Adjustment");
                         currentNode = MakeAdjustment(Z, Y, X, Yleft, Zleft, Zright, Xright, currentNode);
                         //q.Enqueue(Y); q.Enqueue(Z); 
                     }
                     else if (Xright != null && Yleft != null && Xright.Id == Y.Id && Yleft.Id == Z.Id)
                     {
                         //right left  case
-                        Console.WriteLine("Right Left Adjustment");
+                        //Console.WriteLine("Right Left Adjustment");
                         currentNode = MakeAdjustment(Z, X, Y, Xleft, Zleft, Zright, Yright, currentNode);
                         //q.Enqueue(X); q.Enqueue(Z);
                     }
                     else if (Xleft != null && Yleft != null && Xleft.Id == Y.Id && Yleft.Id == Z.Id)
                     {
                         //left left  case
-                        Console.WriteLine("Left Left Adjustment");
+                        //Console.WriteLine("Left Left Adjustment");
                         currentNode = MakeAdjustment(Y, Z, X, Zleft, Zright, Yright, Xright, currentNode);
                         //q.Enqueue(Z); q.Enqueue(Y);
                     }
                     else if (Xright != null && Yright != null && Xright.Id == Y.Id && Yright.Id == Z.Id)
                     {
                         //right right  case
-                        Console.WriteLine("Right Right Adjustment");
+                        //Console.WriteLine("Right Right Adjustment");
                         currentNode = MakeAdjustment(Y, X, Z, Xleft, Yleft, Zleft, Zright, currentNode);
                         //q.Enqueue(X); q.Enqueue(Y);
                     }
@@ -368,18 +368,13 @@ namespace GraphShine.DataStructures
             else right = B.height;
             X.height = Math.Max(left, right) + 1;
         }
-        public static void Delete()
-        {
-
-        }
-        public static Node GetKey()
-        {            
-            return null;
-        }
+       
+        
 
         public  void printTree()
         {
             if (RootNode == null) return;
+            Console.WriteLine("Nodes = " + NodeCount + " Root = " + ((BSTnode<DJ>)RootNode).value);
             Queue<BSTnode<DJ>> q = new Queue<BSTnode<DJ>>();
             q.Enqueue((BSTnode<DJ>)RootNode);
             while (q.Count > 0)
@@ -403,11 +398,6 @@ namespace GraphShine.DataStructures
             Console.WriteLine("");
         }
 
-
-        public void UpdateNode(DJ w, DJ weight )
-        {
-            
-        }
         public DJ  ExtractMin()
         {
             if (RootNode == null) 

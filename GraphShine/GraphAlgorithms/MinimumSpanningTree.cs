@@ -59,12 +59,12 @@ namespace GraphShine.GraphAlgorithms
             while (!bst.IsEmpty())
             {
                 Vertex v = bst.ExtractMin();
+                v.Color = 1;
                 //bst.printTree();
                 foreach (Vertex w in G.NeighborList(v))
                 {                    
                     if (w.Color == 1) continue;
-
-                    w.Color = 1;
+                    
                     Edge e = G.getEdge(v, w);
 
                     if (w.Weight >= e.Weight)

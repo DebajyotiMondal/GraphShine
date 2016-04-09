@@ -276,7 +276,7 @@ namespace GraphShine.GraphPrimitives
         public int Id;
         public int StartNodeId;
         public int EndNodeId;
-        public int Weight;
+        public double Weight;
 
         public Edge(int v1, int v2, int EdgeId)
         {
