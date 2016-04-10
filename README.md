@@ -4,7 +4,21 @@ GraphShine is a collection of algorithms for graph manipulations. The goal of th
 
 Algorithms that have been implemented so far (all for undirected graphs)...
 
+</br> 
+Graph Algorithms</br> 
+-----------------
 Finding Connected Components</br>
-Finding BFS order</br>
+BFS order</br>
+Minimum Spanning Tree</br>
+
+</br> 
+Data Structure</br> 
+-----------------
 Binary Search Tree (AVL)</br>
 Segment Tree</br>
+
+</br> 
+Utilities</br> 
+-----------
+Binary Search</br> 
+L1 Nearest Neighbor</br> 

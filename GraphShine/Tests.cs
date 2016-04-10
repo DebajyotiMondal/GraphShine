@@ -2,6 +2,7 @@
 using GraphShine.DataStructures;
 using GraphShine.GeometricPrimitives;
 using GraphShine.GraphAlgorithms;
+using GraphShine.GraphPrimitives;
 using GraphShine.IO;
 using GraphShine.Utilities;
 
@@ -47,8 +48,9 @@ namespace GraphShine
             //VertrexOrderingTest.BfsTest();
             //ConnectedComponentsTest.getAllComponentsTest();
             //BSTTest.BinarySearchTreeTest();
-            MinimumSpanningTreeTest.MSTtest();
-            
+            //MinimumSpanningTreeTest.MSTtest();
+            //GraphReaderTest.GeometricGraphReadingTest();
+            PlanarGraphTest.PlanarGraphFunctionsTest();
         }
     }
 }

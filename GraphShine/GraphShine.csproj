@@ -61,7 +61,9 @@
     <Compile Include="DataStructures\SegmentTree.cs" />
     <Compile Include="DataStructures\SegmentTreeTest.cs" />
     <Compile Include="GeometricAlgorithms\GeometricMST.cs" />
+    <Compile Include="GeometricPrimitives\Graph2D.cs" />
     <Compile Include="GeometricPrimitives\HInterval.cs" />
+    <Compile Include="GraphPrimitives\PlanarGraph.cs" />
     <Compile Include="GeometricPrimitives\Rectangle.cs" />
     <Compile Include="GraphAlgorithms\ConnectedComponents.cs" />
     <Compile Include="GraphAlgorithms\ConnectedComponentsTest.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="GraphAlgorithms\MinimumSpanningTree.cs" />
     <Compile Include="GraphAlgorithms\VertrexOrderingTest.cs" />
     <Compile Include="GraphPrimitives\Graph.cs" />
+    <Compile Include="GraphPrimitives\PlanarGraphTest.cs" />
     <Compile Include="GraphPrimitives\Tree.cs" />
     <Compile Include="IO\GraphReader.cs" />
     <Compile Include="IO\GraphReaderTest.cs" />
@@ -78,6 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Angle.cs" />
     <Compile Include="Utilities\Distance.cs" />
     <Compile Include="Utilities\Fields.cs" />
     <Compile Include="Utilities\NearestNeighbor.cs" />
@@ -86,6 +90,7 @@
     <Compile Include="Utilities\NearestNeighborTest.cs" />
     <Compile Include="Utilities\ArraySearch.cs" />
     <Compile Include="Utilities\ArraySearchTest.cs" />
+    <Compile Include="Utilities\RotationSystem.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

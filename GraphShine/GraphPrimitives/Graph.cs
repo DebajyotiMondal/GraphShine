@@ -11,8 +11,8 @@ namespace GraphShine.GraphPrimitives
         public int VertexCount;
         public int EdgeCount;
 
-        private static Stack<int> ReusableVertexId;
-        private static Stack<int> ReusableEdgeId;
+        private Stack<int> ReusableVertexId;
+        private Stack<int> ReusableEdgeId;
 
         private Dictionary<int,Vertex> Vertices = new Dictionary<int,Vertex>();
         private Dictionary<int, Edge> Edges = new Dictionary<int, Edge>();
@@ -27,15 +27,44 @@ namespace GraphShine.GraphPrimitives
             ReusableEdgeId = new Stack<int>();
         }
 
+        public static void CopyAttributes(Graph from, Graph to)
+        {
+            to.VertexCount = from.VertexCount;
+            to.EdgeCount = from.EdgeCount;
+            to.ReusableVertexId = from.ReusableVertexId;
+            to.ReusableEdgeId = from.ReusableEdgeId;
+            to.Vertices = from.Vertices;
+            to.Edges = from.Edges;
+            to.AdjList = from.AdjList;
+        }
+
         public Vertex GetInitialVertex()
         {
             return Vertices.Values.First();            
         }
+     
+        public Vertex GetInitialNeighbor(Vertex v)
+        {
+            var w= AdjList[v.Id].Keys.First();
+            return Vertices[w];
+        }
         
+        public Vertex GetInitialNeighbor(int Id)
+        {
+            var w = AdjList[Id].Keys.First();
+            return Vertices[w];
+        }
 
-
-         
-         
+        public int Degree(Vertex v)
+        {
+            return Degree(v.Id);
+        }
+        
+        public int Degree(int Id)
+        {
+            return AdjList[Id].Keys.Count;
+        }  
+        
         public Vertex CreateVertex()
         {
 
@@ -245,12 +274,12 @@ namespace GraphShine.GraphPrimitives
         public int Id;
         public double Weight;
         public int Color;
-        public int degree;
         public Vertex Parent;
         public Vertex(int a)
         {
             Id = a;
         }
+
 
         int IComparable.CompareTo(object obj)
         {

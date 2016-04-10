@@ -205,13 +205,13 @@ namespace GraphShine.Utilities
         }
 
 
-        public static void Assign(int k, int j, double[] source, double[] target, Point[] P, Point[] targetP)
+        private static void Assign(int k, int j, double[] source, double[] target, Point[] P, Point[] targetP)
         {
             target[k] = source[j]; targetP[k].Id = P[j].Id; targetP[k].x = P[j].x; targetP[k].y = P[j].y;
         }
 
         //sort: small target large values on priority
-        public static void iterativeMergesort(double[] priority, Point[] P)
+        private static void iterativeMergesort(double[] priority, Point[] P)
         {
             double[] source = priority;
             double[] target = new double[priority.Length];
