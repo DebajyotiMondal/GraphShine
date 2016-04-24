@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GraphShine.GraphAlgorithms;
 using GraphShine.GraphPrimitives;
 
-namespace GraphShine.GraphAlgorithms
+namespace GraphShine.Tests
 {
     /* 
      * ConnectedComponentsTest.getAllComponentsTest();

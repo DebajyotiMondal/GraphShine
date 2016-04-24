@@ -10,23 +10,23 @@ namespace GraphShine.GeometricPrimitives
     public class HInterval
     {
         public int Id;
-        public Point A;
-        public Point B;
+        public Point2D A;
+        public Point2D B;
 
         public HInterval(HInterval givenHInterval)
         {
-            A = new Point(givenHInterval.A.x, givenHInterval.A.y);
-            B = new Point(givenHInterval.B.x, givenHInterval.B.y);
+            A = new Point2D(givenHInterval.A.x, givenHInterval.A.y);
+            B = new Point2D(givenHInterval.B.x, givenHInterval.B.y);
             Id = givenHInterval.Id;
         }
 
-        public HInterval(Point s, Point t)
+        public HInterval(Point2D s, Point2D t)
         {
             A = s;
             B = t;
         }
 
-        public HInterval(Point s, Point t, int w)
+        public HInterval(Point2D s, Point2D t, int w)
         {
             Id = w;
             A = s;
@@ -43,7 +43,7 @@ namespace GraphShine.GeometricPrimitives
             return (A.x<= givenHInterval.A.x  && B.x >= givenHInterval.B.x);
         }
 
-        public bool Contains(Point p)
+        public bool Contains(Point2D p)
         {
             return (A.x <= p.x && B.x >= p.x);
         }

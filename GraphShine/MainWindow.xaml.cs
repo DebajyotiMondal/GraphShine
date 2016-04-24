@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GraphShine.Tests;
+using iTextSharp.text.pdf;
 
 namespace GraphShine
 {
@@ -23,7 +26,7 @@ namespace GraphShine
 
         public void runTests()
         {
-            Tests allTests = new Tests();
+            TestFunctions allTests = new TestFunctions(Paper);
             allTests.Run();
         }
         public MainWindow()
@@ -31,7 +34,9 @@ namespace GraphShine
             Console.WriteLine("Welcome to GraphShine!");
             InitializeComponent();
             runTests();
-            //this.Hide();
+            //this.Hide();                        
         }
+
+
     }
 }

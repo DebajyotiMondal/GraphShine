@@ -7,7 +7,7 @@ using GraphShine.GraphPrimitives;
 
 namespace GraphShine.GraphAlgorithms
 {
-    public class VertrexOrdering
+    public class VertexOrdering
     {
         public static int[] BfsOrdering(Graph connectedGraph, Vertex startVertex)
         {
@@ -46,6 +46,13 @@ namespace GraphShine.GraphAlgorithms
             }
 
             return BfsOrder;
+        }
+
+        public static int[] CanonicalOrdering(PlanarGraph g, Vertex root_l, Vertex root_m, Vertex root_r)
+        {
+            SchnyderWood.BuildSchnyderTrees(g, root_l,root_m,root_r);
+            //to be coded
+            return new int[0];
         }
     }
 }

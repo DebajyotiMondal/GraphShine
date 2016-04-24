@@ -111,13 +111,13 @@ namespace GraphShine.DataStructures
                 if(i + 1 < endpoints.Length) rightend = endpoints[i+1];
 
                 //elementary closed BaseHInterval
-                HInterval hInterval = new HInterval(new Point(leftend, 0), new Point(leftend, 0));
+                HInterval hInterval = new HInterval(new Point2D(leftend, 0), new Point2D(leftend, 0));
                 elementaryHIntervals[numberOfElementaryIntervals++] = hInterval;
                 //elementary open BaseHInterval
                 if (leftend != rightend)
                 {
-                    hInterval = new HInterval(new Point(leftend + Fields.Epsilon, 0),
-                        new Point(rightend - Fields.Epsilon, 0));
+                    hInterval = new HInterval(new Point2D(leftend + Fields.Epsilon, 0),
+                        new Point2D(rightend - Fields.Epsilon, 0));
                     elementaryHIntervals[numberOfElementaryIntervals++] = hInterval;
                 }
             }
@@ -147,7 +147,7 @@ namespace GraphShine.DataStructures
                     if (k < numberOfElementaryIntervals)
                         w.BaseHInterval = elementaryHIntervals[k++];
                     else
-                        w.BaseHInterval = new HInterval(new Point(Double.MaxValue, 0), new Point(Double.MaxValue, 0));
+                        w.BaseHInterval = new HInterval(new Point2D(Double.MaxValue, 0), new Point2D(Double.MaxValue, 0));
                 }
             }
             //postorder traversal and update internal nodes
@@ -164,14 +164,14 @@ namespace GraphShine.DataStructures
             w.BaseHInterval = new HInterval(leftkid.BaseHInterval.A, rightkid.BaseHInterval.B);
         }
 
-        public static List<HInterval> GetAllIntersectingIntervals(Point givenPoint)
+        public static List<HInterval> GetAllIntersectingIntervals(Point2D givenPoint2D)
         {
             List <HInterval> intersetList = new List<HInterval>();
-            allIntersecting((SegmentNode)tree.RootNode, givenPoint, intersetList);
+            allIntersecting((SegmentNode)tree.RootNode, givenPoint2D, intersetList);
             return intersetList;
         }
 
-        static void allIntersecting(SegmentNode w, Point givenPoint, List<HInterval> intersetList)
+        static void allIntersecting(SegmentNode w, Point2D givenPoint2D, List<HInterval> intersetList)
         {
             if (w.ListOfHIntervals != null)
             {
@@ -179,21 +179,21 @@ namespace GraphShine.DataStructures
                     intersetList.Add(interval);
             }
             SegmentNode leftkid = (SegmentNode) w.leftKid();
-            if(leftkid!= null && leftkid.BaseHInterval.Contains(givenPoint))
-                allIntersecting(leftkid, givenPoint, intersetList);
+            if(leftkid!= null && leftkid.BaseHInterval.Contains(givenPoint2D))
+                allIntersecting(leftkid, givenPoint2D, intersetList);
             SegmentNode rightkid = (SegmentNode)w.rightKid();
-            if (rightkid != null && rightkid.BaseHInterval.Contains(givenPoint))
-                allIntersecting(rightkid, givenPoint, intersetList);
+            if (rightkid != null && rightkid.BaseHInterval.Contains(givenPoint2D))
+                allIntersecting(rightkid, givenPoint2D, intersetList);
         }
         
-        public static HInterval GetImmediatelyAbove(Point givenPoint)
+        public static HInterval GetImmediatelyAbove(Point2D givenPoint2D)
         {
-            HInterval intersectedSegment = new HInterval(new Point(0, double.MaxValue), new Point(0, double.MaxValue));
-            GetImmediateIntersectingSegment((SegmentNode)tree.RootNode, givenPoint, ref intersectedSegment);
+            HInterval intersectedSegment = new HInterval(new Point2D(0, double.MaxValue), new Point2D(0, double.MaxValue));
+            GetImmediateIntersectingSegment((SegmentNode)tree.RootNode, givenPoint2D, ref intersectedSegment);
             return intersectedSegment;
         }
 
-        static void GetImmediateIntersectingSegment(SegmentNode w, Point givenPoint, ref HInterval intersectedSegment)
+        static void GetImmediateIntersectingSegment(SegmentNode w, Point2D givenPoint2D, ref HInterval intersectedSegment)
         {
             if (w.ListOfHIntervals != null)
             {
@@ -204,28 +204,28 @@ namespace GraphShine.DataStructures
                 while (low <= high)
                 {
                     int mid = (low + high) / 2;
-                    if (w.ListOfHIntervals[mid].A.y == givenPoint.y)
+                    if (w.ListOfHIntervals[mid].A.y == givenPoint2D.y)
                     {
                         intersectedSegment = w.ListOfHIntervals[mid];
                         break;
                     }
-                    if (w.ListOfHIntervals[mid].A.y < givenPoint.y)
+                    if (w.ListOfHIntervals[mid].A.y < givenPoint2D.y)
                         low = mid + 1;
                     else
                     {
                         if(intersectedSegment.A.y > w.ListOfHIntervals[mid].A.y )
                             intersectedSegment = w.ListOfHIntervals[mid];
                         high = mid - 1;
-                        if (high < 0 || w.ListOfHIntervals[high].A.y < givenPoint.y) break;
+                        if (high < 0 || w.ListOfHIntervals[high].A.y < givenPoint2D.y) break;
                     }                    
                 }
             }
             SegmentNode leftkid = (SegmentNode) w.leftKid();
-            if(leftkid!= null && leftkid.BaseHInterval.Contains(givenPoint))
-                GetImmediateIntersectingSegment(leftkid, givenPoint, ref intersectedSegment);
+            if(leftkid!= null && leftkid.BaseHInterval.Contains(givenPoint2D))
+                GetImmediateIntersectingSegment(leftkid, givenPoint2D, ref intersectedSegment);
             SegmentNode rightkid = (SegmentNode)w.rightKid();
-            if (rightkid != null && rightkid.BaseHInterval.Contains(givenPoint))
-                GetImmediateIntersectingSegment(rightkid, givenPoint, ref intersectedSegment);
+            if (rightkid != null && rightkid.BaseHInterval.Contains(givenPoint2D))
+                GetImmediateIntersectingSegment(rightkid, givenPoint2D, ref intersectedSegment);
         }
     
     }

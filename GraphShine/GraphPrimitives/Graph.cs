@@ -204,6 +204,15 @@ namespace GraphShine.GraphPrimitives
             return true;
         }
 
+        public Vertex getSource(Edge e)
+        {
+            return Vertices[e.StartNodeId];
+        }
+        public Vertex getDestination(Edge e)
+        {
+            return Vertices[e.EndNodeId];
+        }
+
         public bool InsertEdge(Edge e)
         {
             bool alreadyExists = ContainsEdge(e);

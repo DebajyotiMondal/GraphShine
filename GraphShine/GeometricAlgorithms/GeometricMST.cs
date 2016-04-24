@@ -9,9 +9,9 @@ namespace GraphShine.GeometricAlgorithms
 {
     public class GeometricMST
     {
-        public static Dictionary<Point, Point> MinimumSpanningTree(List<Point> PointSet)
+        public static Dictionary<Point2D, Point2D> MinimumSpanningTree(List<Point2D> PointSet)
         {
-            Dictionary<Point, Point> NearestNeighbor = new Dictionary<Point, Point>();
+            Dictionary<Point2D, Point2D> NearestNeighbor = new Dictionary<Point2D, Point2D>();
             return NearestNeighbor;
         }
     }

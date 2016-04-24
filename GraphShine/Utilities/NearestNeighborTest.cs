@@ -17,8 +17,8 @@ namespace GraphShine.Utilities
         public static void L1NearestNeighborInConeTest()
         {
 
-            Point[] P = new Point[10];
-            for(int i =0;i<P.Length;i++)P[i] = new Point(0,0,i);
+            Point2D[] P = new Point2D[10];
+            for(int i =0;i<P.Length;i++)P[i] = new Point2D(0,0,i);
             P[0].x = 5; P[0].y = 1;
             P[1].x = 1; P[1].y = 5;
             P[2].x = 2; P[2].y = 7;

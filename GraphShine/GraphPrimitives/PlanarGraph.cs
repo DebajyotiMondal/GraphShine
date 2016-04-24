@@ -8,7 +8,7 @@ using GraphShine.Utilities;
 
 namespace GraphShine.GraphPrimitives
 {
-    class PlanarGraph: Graph
+    public class PlanarGraph: Graph
     {
         internal Dictionary<Vertex, Dictionary<Vertex, KeyValuePair<Vertex, Vertex>>> PlanarAdjList;
 
@@ -26,11 +26,45 @@ namespace GraphShine.GraphPrimitives
         }
 
 
-        public Dictionary<Vertex, KeyValuePair<Vertex,Vertex>>.KeyCollection NeighborOrderedList(Vertex v)
+        public List<Vertex> NeighborListOrderedCCW(Vertex v)
         {
             var list = new List<Vertex>();
-            return PlanarAdjList[v].Keys;            
+            if (PlanarAdjList[v].Keys.Count == 0) return null;
+            var initialVertex = PlanarAdjList[v].Keys.First();            
+            var neighbor = initialVertex;
+
+            do
+            {
+                list.Add(neighbor);
+                neighbor = getAntiClockNeighbor(v, neighbor);
+            } while (neighbor.Id != initialVertex.Id);
+            
+            return list;
         }
+
+        public List<Vertex> NeighborListOrderedCCW(Vertex v, Vertex startVertex)
+        {
+            var list = NeighborListOrderedCCW(v);
+            var newList = new List<Vertex>();
+
+            bool startVertexFound = false;
+            foreach (var w in list)
+            {
+                if (startVertex.Id == w.Id)
+                    startVertexFound = true;
+                if(startVertexFound) newList.Add(w);
+            }
+
+            foreach (var w in list)
+            {
+                if (startVertex.Id == w.Id) break;
+                newList.Add(w);
+            }
+
+            return newList;
+        }
+
+         
 
         /*
          * input: a planar graph and an edge a<---b
@@ -140,6 +174,22 @@ namespace GraphShine.GraphPrimitives
             // posInRotationSystem should come as an input
             Console.WriteLine("Not Supported Yet");
             return true;
+        }
+
+        public void print()
+        {
+            Console.WriteLine("Printing Planar Graph Adjacency List");
+            foreach (Vertex v in VertexList())
+            {
+                Console.Write(v + " -> ");
+                foreach (var w in NeighborListOrderedCCW(v))
+                {
+                    var acw = getAntiClockNeighbor(v, w);
+                    var cw = getClockNeighbor(v, w);
+                    Console.Write(w + "-[" + acw + "," + cw + "]" + "  ");
+                }
+                Console.WriteLine();
+            }
         }
 
     }

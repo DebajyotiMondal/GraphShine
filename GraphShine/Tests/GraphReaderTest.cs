@@ -1,14 +1,12 @@
-﻿
-
-
-using System;
+﻿using System;
 using GraphShine.GraphPrimitives;
+using GraphShine.IO;
 
 /*
  * GraphReaderTest.GraphReadingTest();
  */
 
-namespace GraphShine.IO
+namespace GraphShine.Tests
 {
     public class GraphReaderTest
     {

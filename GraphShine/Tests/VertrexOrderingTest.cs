@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GraphShine.GraphAlgorithms;
 using GraphShine.GraphPrimitives;
+using GraphShine.IO;
 
-namespace GraphShine.GraphAlgorithms
+namespace GraphShine.Tests
 {
     /*
      * VertrexOrderingTest.BfsTest();
@@ -29,7 +27,7 @@ namespace GraphShine.GraphAlgorithms
             G.InsertEdge(v1, v3);
             G.InsertEdge(v2, v3);
 
-            int [] bfsOrder = VertrexOrdering.BfsOrdering(G, G.GetVertex(0));
+            int [] bfsOrder = VertexOrdering.BfsOrdering(G, G.GetVertex(0));
             for (int i = 0; i < bfsOrder.Length; i++) 
                 Console.WriteLine(bfsOrder[i]+" ");
 
@@ -41,18 +39,29 @@ namespace GraphShine.GraphAlgorithms
             G.InsertEdge(v4, v5);
             G.InsertEdge(v5, v6);
             G.InsertEdge(v6, v7);
-            bfsOrder = VertrexOrdering.BfsOrdering(G, G.GetVertex(4));
+            bfsOrder = VertexOrdering.BfsOrdering(G, G.GetVertex(4));
             for (int i = 0; i < bfsOrder.Length; i++)
                 Console.WriteLine(bfsOrder[i] + " ");
 
             Console.WriteLine("-------");
             G.DeleteEdge(5,6);
-            bfsOrder = VertrexOrdering.BfsOrdering(G, G.GetVertex(4));
+            bfsOrder = VertexOrdering.BfsOrdering(G, G.GetVertex(4));
             for (int i = 0; i < bfsOrder.Length; i++)
                 Console.WriteLine(bfsOrder[i] + " ");
 
 
         }
 
+        public static void CanonicalOrderingTest()
+        {
+            String filename = "../../data/testgeometricgraph.txt";
+            Graph2D graph = GraphReader.ReadGeometricGraph(filename);
+            PlanarGraph g = new PlanarGraph(graph);
+
+            Vertex root_l = g.GetVertex(1);
+            Vertex root_m = g.GetVertex(15);
+            Vertex root_r = g.GetVertex(2); 
+            var ordering = VertexOrdering.CanonicalOrdering(g,root_l,root_m,root_r);
+        }
     }
 }

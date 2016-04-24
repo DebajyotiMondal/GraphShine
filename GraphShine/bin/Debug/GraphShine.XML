@@ -75,6 +75,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="T:GraphShine.Tests.TestFunctions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:GraphShine.Utilities.ArraySearch.BinarySearch(System.Double,System.Double[],System.Int32@)">
             <summary>
             Searches query value inside an array and if found, then the indexFound is 

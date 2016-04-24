@@ -8,14 +8,14 @@ namespace GraphShine.Utilities
         
 
 
-        public static Dictionary<int, int> L1NearestNeighborInCone(Point[] P, int ConeId)
+        public static Dictionary<int, int> L1NearestNeighborInCone(Point2D[] P, int ConeId)
         {           
             
-            Rectangle rect = Point.GetBoundary(P);
+            Rectangle rect = Point2D.GetBoundary(P);
             double maxX = rect.TopRightCorner.x;
             double maxY = rect.TopRightCorner.y;
 
-            Point[] Q = new Point[P.Length];
+            Point2D[] Q = new Point2D[P.Length];
 
             //transform the point set so that we only need target think of computing neighbors in the 4th cone
             BringPointSetIntoFourthCone(P, Q, ConeId, maxX, maxY);
@@ -30,18 +30,18 @@ namespace GraphShine.Utilities
             double[] source = xPLUSy;
             double[] target = new double[xPLUSy.Length];
 
-            Point[] targetQ = new Point[xPLUSy.Length];
-            Point[] tempQ = new Point[xPLUSy.Length];
+            Point2D[] targetQ = new Point2D[xPLUSy.Length];
+            Point2D[] tempQ = new Point2D[xPLUSy.Length];
             for (int i = 0; i < Q.Length; i++)
             {
-                targetQ[i] = new Point();
-                tempQ[i] = new Point(Q[i]);
+                targetQ[i] = new Point2D();
+                tempQ[i] = new Point2D(Q[i]);
             } 
 
 
-            Dictionary<int, Point> IdToPoint = new Dictionary<int, Point>();
+            Dictionary<int, Point2D> IdToPoint = new Dictionary<int, Point2D>();
             for (int k = 0; k < xPLUSy.Length; k++) IdToPoint.Add(tempQ[k].Id, tempQ[k]);
-            Dictionary<int, Point> PosToPoint = new Dictionary<int, Point>();
+            Dictionary<int, Point2D> PosToPoint = new Dictionary<int, Point2D>();
             for (int k = 0; k < xPLUSy.Length; k++) PosToPoint.Add(k, tempQ[k]);
 
 
@@ -54,12 +54,12 @@ namespace GraphShine.Utilities
             return neighborlist;
         }
 
-        private static void BringPointSetIntoFourthCone(Point[] P, Point[] Q, int ConeId, double maxX, double maxY)
+        private static void BringPointSetIntoFourthCone(Point2D[] P, Point2D[] Q, int ConeId, double maxX, double maxY)
         {
             
             for (int i = 0; i < P.Length; i++)
             {
-                Q[i] = new Point();
+                Q[i] = new Point2D();
 
                 if (ConeId == 3)
                 {
@@ -139,7 +139,7 @@ namespace GraphShine.Utilities
             }
         }
 
-        private static void FindNeighbor(double[] source, double[] target, int low, int mid, int hi, Point[] P, Point [] targetP,   Dictionary<int, int> neighborlist, Dictionary<int, Point> IdToPoint, Dictionary<int, Point> PosToPoint)
+        private static void FindNeighbor(double[] source, double[] target, int low, int mid, int hi, Point2D[] P, Point2D [] targetP,   Dictionary<int, int> neighborlist, Dictionary<int, Point2D> IdToPoint, Dictionary<int, Point2D> PosToPoint)
         {
             if (mid > source.Length) mid = source.Length;
             if (hi > source.Length) hi = source.Length;
@@ -205,18 +205,18 @@ namespace GraphShine.Utilities
         }
 
 
-        private static void Assign(int k, int j, double[] source, double[] target, Point[] P, Point[] targetP)
+        private static void Assign(int k, int j, double[] source, double[] target, Point2D[] P, Point2D[] targetP)
         {
             target[k] = source[j]; targetP[k].Id = P[j].Id; targetP[k].x = P[j].x; targetP[k].y = P[j].y;
         }
 
         //sort: small target large values on priority
-        private static void iterativeMergesort(double[] priority, Point[] P)
+        private static void iterativeMergesort(double[] priority, Point2D[] P)
         {
             double[] source = priority;
             double[] target = new double[priority.Length];
-            Point[] targetP = new Point[priority.Length];
-            for (int i = 0; i < P.Length; i++) targetP[i] = new Point(); 
+            Point2D[] targetP = new Point2D[priority.Length];
+            for (int i = 0; i < P.Length; i++) targetP[i] = new Point2D(); 
 
             for (int blockSize = 1; blockSize < priority.Length; blockSize *= 2)
             {
@@ -227,7 +227,7 @@ namespace GraphShine.Utilities
                 priority[k] = source[k];
         }
 
-        private static void merge(double[] source, double[] target, int low, int mid, int hi,  Point[] P, Point[] targetP)
+        private static void merge(double[] source, double[] target, int low, int mid, int hi,  Point2D[] P, Point2D[] targetP)
         {
             if (mid > source.Length) mid = source.Length;
             if (hi > source.Length) hi = source.Length;

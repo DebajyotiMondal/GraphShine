@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GraphShine.GraphPrimitives;
 using GraphShine.IO;
 
-namespace GraphShine.GraphPrimitives
+namespace GraphShine.Tests
 {
     class PlanarGraphTest
     {
@@ -42,22 +39,8 @@ namespace GraphShine.GraphPrimitives
 
 
 
-
-
-
             PlanarGraph pg = new PlanarGraph(graph);
-            Console.WriteLine("Printing Planar Graph Adjacency List");
-            foreach (Vertex v in pg.VertexList())
-            {
-                Console.Write(v + " -> " );
-                foreach (var w in pg.NeighborOrderedList(v))
-                {
-                    var acw = pg.getAntiClockNeighbor(v,w);
-                    var cw = pg.getClockNeighbor(v, w);
-                    Console.Write(w + "-["+acw+","+cw+"]"+ "  ");
-                }
-                Console.WriteLine();
-            }
+            pg.print();
 
         }
         

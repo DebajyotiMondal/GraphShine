@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="iTextSharp">
+      <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -59,23 +62,25 @@
     </Compile>
     <Compile Include="DataStructures\BSTTest.cs" />
     <Compile Include="DataStructures\SegmentTree.cs" />
-    <Compile Include="DataStructures\SegmentTreeTest.cs" />
+    <Compile Include="GraphAlgorithms\SchnyderWood.cs" />
+    <Compile Include="Tests\DrawingTest.cs" />
+    <Compile Include="Tests\SegmentTreeTest.cs" />
     <Compile Include="GeometricAlgorithms\GeometricMST.cs" />
     <Compile Include="GeometricPrimitives\Graph2D.cs" />
     <Compile Include="GeometricPrimitives\HInterval.cs" />
     <Compile Include="GraphPrimitives\PlanarGraph.cs" />
     <Compile Include="GeometricPrimitives\Rectangle.cs" />
     <Compile Include="GraphAlgorithms\ConnectedComponents.cs" />
-    <Compile Include="GraphAlgorithms\ConnectedComponentsTest.cs" />
-    <Compile Include="GraphAlgorithms\MinimumSpanningTreeTest.cs" />
+    <Compile Include="Tests\ConnectedComponentsTest.cs" />
+    <Compile Include="Tests\MinimumSpanningTreeTest.cs" />
     <Compile Include="GraphAlgorithms\VertrexOrdering.cs" />
     <Compile Include="GraphAlgorithms\MinimumSpanningTree.cs" />
-    <Compile Include="GraphAlgorithms\VertrexOrderingTest.cs" />
+    <Compile Include="Tests\VertrexOrderingTest.cs" />
     <Compile Include="GraphPrimitives\Graph.cs" />
-    <Compile Include="GraphPrimitives\PlanarGraphTest.cs" />
+    <Compile Include="Tests\PlanarGraphTest.cs" />
     <Compile Include="GraphPrimitives\Tree.cs" />
     <Compile Include="IO\GraphReader.cs" />
-    <Compile Include="IO\GraphReaderTest.cs" />
+    <Compile Include="Tests\GraphReaderTest.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -85,12 +90,13 @@
     <Compile Include="Utilities\Distance.cs" />
     <Compile Include="Utilities\Fields.cs" />
     <Compile Include="Utilities\NearestNeighbor.cs" />
-    <Compile Include="GeometricPrimitives\Point.cs" />
-    <Compile Include="Tests.cs" />
+    <Compile Include="GeometricPrimitives\Point2D.cs" />
+    <Compile Include="Tests\TestFunctions.cs" />
     <Compile Include="Utilities\NearestNeighborTest.cs" />
     <Compile Include="Utilities\ArraySearch.cs" />
     <Compile Include="Utilities\ArraySearchTest.cs" />
     <Compile Include="Utilities\RotationSystem.cs" />
+    <Compile Include="Viewer\GraphViewer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

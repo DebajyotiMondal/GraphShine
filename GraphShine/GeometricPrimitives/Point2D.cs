@@ -2,47 +2,47 @@
 
 namespace GraphShine.GeometricPrimitives
 {
-    public class Point
+    public class Point2D
     {
         public int Id;
         public double x;
         public double y;
         
-        public Point(double a, double b, int c)
+        public Point2D(double a, double b, int c)
         {
             Id = c;
             x = a;
             y = b;
         }
-        public Point(double a, double b)
+        public Point2D(double a, double b)
         {
             x = a;
             y = b;
         }
-        public Point(Point q)
+        public Point2D(Point2D q)
         {
             Id = q.Id;
             x = q.x;
             y = q.y;
         }
-        public Point() 
+        public Point2D() 
         {
             Id = -1;
             x = 0;
             y = 0;
         }
          
-        public static bool operator ==(Point a, Point b)
+        public static bool operator ==(Point2D a, Point2D b)
         {
             return a.x == b.x && a.y == b.y;
         }
-        public static bool operator !=(Point a, Point b)
+        public static bool operator !=(Point2D a, Point2D b)
         {
             return !(a == b);
         }
 
 
-        public static Rectangle GetBoundary(Point[] P)
+        public static Rectangle GetBoundary(Point2D[] P)
         {
             double minX = double.MaxValue;
             double minY = double.MaxValue;

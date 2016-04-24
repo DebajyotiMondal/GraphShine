@@ -1,16 +1,22 @@
-﻿using System.Collections.Generic;
-using GraphShine.DataStructures;
-using GraphShine.GeometricPrimitives;
-using GraphShine.GraphAlgorithms;
-using GraphShine.GraphPrimitives;
-using GraphShine.IO;
-using GraphShine.Utilities;
+﻿using System.Windows.Controls;
 
-namespace GraphShine
+namespace GraphShine.Tests
 {
-    public class Tests
-    {
-        //Graph Drawing Tests
+    /// <summary>
+    /// 
+    /// </summary>
+    public class TestFunctions
+    { 
+        public Canvas Paper;
+
+         
+        public TestFunctions(Canvas Paper)
+        {
+            // TODO: Complete member initialization
+            this.Paper = Paper;
+        }
+
+        //Graph Drawing TestFunctions
         public void SchnyderRealizerTest() { }
 
         public void MinimumSchnyderRealizerTest() { }
@@ -50,7 +56,9 @@ namespace GraphShine
             //BSTTest.BinarySearchTreeTest();
             //MinimumSpanningTreeTest.MSTtest();
             //GraphReaderTest.GeometricGraphReadingTest();
-            PlanarGraphTest.PlanarGraphFunctionsTest();
+            //PlanarGraphTest.PlanarGraphFunctionsTest(); //incomplete
+            //DrawingTest.DrawingStraightLineTest(Paper);
+            VertrexOrderingTest.CanonicalOrderingTest();
         }
     }
 }

@@ -9,16 +9,16 @@ namespace GraphShine.Utilities
 {
     public class Distance
     {
-        public static double EuclideanDist(Point p, Point q)
+        public static double EuclideanDist(Point2D p, Point2D q)
         {
             return Math.Sqrt(Math.Pow(p.x - q.x, 2) + Math.Pow(p.y - q.y, 2));
         }
-        public static double ManhattanDist(Point p, Point q)
+        public static double ManhattanDist(Point2D p, Point2D q)
         {
             return Math.Abs(p.x - q.x) + Math.Abs(p.y - q.y);
         }
 
-        public static double LpDist(Point p, Point q, double metric)
+        public static double LpDist(Point2D p, Point2D q, double metric)
         {
             double deltax = p.x - q.x;
             double deltay = p.y - q.y;

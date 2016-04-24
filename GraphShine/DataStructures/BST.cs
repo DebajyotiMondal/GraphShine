@@ -306,7 +306,8 @@ namespace GraphShine.DataStructures
             }
 
         }
-        BSTnode<DJ> MakeAdjustment(Node M, Node L, Node R, Node A, Node B, Node C, Node D, BSTnode<DJ> currentNode)
+        
+        private BSTnode<DJ> MakeAdjustment(Node M, Node L, Node R, Node A, Node B, Node C, Node D, BSTnode<DJ> currentNode)
         {
             Node root = currentNode.Parent; 
             int kidNo = currentNode.PosAsKid;
@@ -368,9 +369,7 @@ namespace GraphShine.DataStructures
             else right = B.height;
             X.height = Math.Max(left, right) + 1;
         }
-       
-        
-
+               
         public  void printTree()
         {
             if (RootNode == null) return;
@@ -417,6 +416,7 @@ namespace GraphShine.DataStructures
             
             return result;
         }
+        
         public bool IsEmpty()
         {
             if (RootNode == null) return true;
